@@ -17,6 +17,7 @@ export interface ILine {
 
 export interface IRoute {
   line: ILine
-  from: IStop // or stop
+  from: IStop
+  to: IStop
   stops: IStopInRoute[]
 }
