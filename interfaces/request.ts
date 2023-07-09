@@ -10,3 +10,13 @@ export interface IFetchData {
   interval: number // 15
   arriveAt: boolean // true
 }
+
+export interface IResRoute {
+  routeName: string
+  totalSeconds: number
+}
+
+export interface IResAlternative {
+  coords: number[]
+  response: IResRoute
+}
