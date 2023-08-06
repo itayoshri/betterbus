@@ -6,7 +6,6 @@ export interface IGtfsStop {
   gtfs_ride_id: number
   arrival_time: string
   departure_time: string
-  stop_sequence: number
   pickup_type: number // TODO: Make a type
   drop_off_type: number // TODO: Make a type
   /*
@@ -17,6 +16,8 @@ export interface IGtfsStop {
   gtfs_stop__lon: number
   gtfs_stop__name: string
   gtfs_stop__city: string
+  stop_sequence: number
+
   /* */
   gtfs_route__line_ref: number
   gtfs_route__operator_ref: number
