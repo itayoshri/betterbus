@@ -4,9 +4,9 @@ import { IGtfsRideStopsReqParams } from '../../interfaces/gtfs'
 const BASE_URL =
   'https://open-bus-stride-api.hasadna.org.il/gtfs_ride_stops/list'
 
-type FetchFor = 'stations' | string
+type FetchFor = 'stops'
 
-export function BuildQuery(data: IGtfsRideStopsReqParams) {
+export function BuildQuery(data: Partial<IGtfsRideStopsReqParams>) {
   let res = ''
   for (const key in data) {
     if (Object.hasOwnProperty.call(data, key)) {
@@ -18,7 +18,7 @@ export function BuildQuery(data: IGtfsRideStopsReqParams) {
 
 export function buildFetchUrl(
   fetchFor: FetchFor,
-  data: IGtfsRideStopsReqParams
+  data: Partial<IGtfsRideStopsReqParams>
 ) {
   switch (fetchFor) {
     case 'stops':
@@ -30,7 +30,7 @@ export function buildFetchUrl(
 
 export async function fetchDataSource<T extends {}>(
   fetchFor: FetchFor,
-  data: IGtfsRideStopsReqParams
+  data: Partial<IGtfsRideStopsReqParams>
 ): Promise<T> {
   const url = buildFetchUrl(fetchFor, data)
   const res = await axios.get<T>(url)

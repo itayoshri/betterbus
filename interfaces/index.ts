@@ -5,4 +5,5 @@ export interface IStop {
   name: string
   id: number
   coord: ICoord
+  ETA: number
 }
