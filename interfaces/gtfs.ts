@@ -1,3 +1,5 @@
+import { operator } from './constants'
+
 export interface IGtfsStop {
   id: number
   gtfs_stop_id: number
@@ -20,4 +22,11 @@ export interface IGtfsStop {
   gtfs_route__operator_ref: number
   gtfs_route__route_short_name: string
   gtfs_route__route_long_name: string
+}
+
+export interface IGtfsRideStopsReqParams {
+  gtfs_route__operator_refs: operator
+  gtfs_route__route_short_name: number // line number
+  gtfs_route__route_direction: number
+  gtfs_route__route_alternative: number
 }
