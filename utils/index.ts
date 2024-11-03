@@ -16,9 +16,19 @@ export class Line {
   }
 
   public async addStops() {
-    const stops = await fetchDataSource<IGtfsStop[]>('stops', {
+    console.log(
+      await fetchDataSource('list', {
+        gtfs_route__operator_refs: this.operator,
+        gtfs_route__route_short_name: this.name,
+      })
+    )
+
+    const id = await fetchDataSource<IGtfsStop[]>('list', {
       gtfs_route__operator_refs: this.operator,
       gtfs_route__route_short_name: this.name,
+    })[0].id
+    const stops = await fetchDataSource<IGtfsStop[]>('stops', {
+      gtfs_ride_ids: id,
     })
     for (const stop of stops) {
       //TODO: add more relevant data

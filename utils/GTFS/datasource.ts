@@ -1,10 +1,9 @@
 import axios from 'axios'
 import { IGtfsRideStopsReqParams } from '../../interfaces/gtfs'
 
-const BASE_URL =
-  'https://open-bus-stride-api.hasadna.org.il/gtfs_ride_stops/list'
+const BASE_URL = 'https://open-bus-stride-api.hasadna.org.il/'
 
-type FetchFor = 'stops'
+type FetchFor = 'stops' | 'list'
 
 export function BuildQuery(data: Partial<IGtfsRideStopsReqParams>) {
   let res = ''
@@ -22,7 +21,15 @@ export function buildFetchUrl(
 ) {
   switch (fetchFor) {
     case 'stops':
-      return `${BASE_URL}?get_count=false${BuildQuery(data)}`
+      return `${BASE_URL}gtfs_ride_stops/list?get_count=false${BuildQuery(
+        data
+      )}`
+
+    case 'list':
+      return `${BASE_URL}gtfs_rides/list?get_count=false${BuildQuery(
+        data
+      )}order_by=id%20desc&`
+
     default:
       return ''
   }

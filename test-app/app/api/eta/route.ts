@@ -12,5 +12,10 @@ export async function GET(request: Request) {
     Number(searchParams.get('operator'))
   )
   await line.addStops()
-  return NextResponse.json(await line.GetETA(0, 1))
+  return NextResponse.json(
+    await line.GetETA(
+      Number(searchParams.get('start')),
+      Number(searchParams.get('end'))
+    )
+  )
 }
